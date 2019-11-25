@@ -67,4 +67,4 @@ WORKDIR /opt/www
 
 EXPOSE 8000
 
-#ENTRYPOINT ["php", "/opt/www/think", "run"]
+ENTRYPOINT ["php", "/opt/www/think", "run"]
