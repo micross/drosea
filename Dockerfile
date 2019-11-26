@@ -43,7 +43,8 @@ php7-bz2 \
 php7-gd \
 php7-mysqli \
 php7-fileinfo \
-composer
+composer \
+git
 
 #composer curl openssl tar autoconf build-base linux-headers libaio-dev openssl-dev
 
