@@ -43,13 +43,12 @@ php7-bz2 \
 php7-gd \
 php7-mysqli \
 php7-fileinfo \
-composer
+composer curl openssl tar autoconf build-base linux-headers libaio-dev openssl-dev
 
-#composer curl openssl tar autoconf build-base linux-headers libaio-dev openssl-dev
-
-# RUN printf "yes\nyes\n" | pecl install swoole
+RUN printf "yes\nyes\n" | pecl install swoole
 
 RUN { \
+        echo "extension=swoole"; \
         echo "upload_max_filesize=100M"; \
         echo "post_max_size=108M"; \
         echo "memory_limit=1024M"; \
