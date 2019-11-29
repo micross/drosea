@@ -43,7 +43,7 @@ php7-bz2 \
 php7-gd \
 php7-mysqli \
 php7-fileinfo \
-composer curl openssl tar autoconf build-base linux-headers libaio-dev openssl-dev
+composer curl openssl tar autoconf build-base linux-headers libaio-dev openssl-dev git
 
 RUN printf "yes\nyes\n" | pecl install swoole
 
