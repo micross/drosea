@@ -66,7 +66,7 @@ RUN php -v \
         echo "memory_limit=1024M"; \
         echo "date.timezone=Asia/Shanghai"; \
     } | tee conf.d/99-overrides.ini \
-    && apk del libaio-dev php7-dev autoconf build-base linux-headers \
+    && apk del openssl-dev tar libaio-dev php7-dev autoconf build-base linux-headers \
     && rm -rf /var/cache/apk/* /tmp/* /usr/share/man \
     && echo -e "\033[42;37m Build Completed :).\033[0m\n"
 
