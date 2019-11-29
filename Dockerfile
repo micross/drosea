@@ -60,7 +60,6 @@ RUN php -v \
     && cd /etc/php7 \
     && { \
         echo "extension=swoole.so"; \
-        echo "swoole.use_shortname='Off'"; \
         echo "upload_max_filesize=100M"; \
         echo "post_max_size=108M"; \
         echo "memory_limit=1024M"; \
