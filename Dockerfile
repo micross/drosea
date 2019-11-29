@@ -2,7 +2,14 @@ FROM alpine
 
 LABEL maintainer="panwei <546196895@qq.com>" version="1.0" license="MIT"
 
-RUN apk add \
+#ARG timezone
+
+#ENV TIMEZONE=${timezone:-"Asia/Shanghai"}
+
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
+
+RUN set -ex && \
+apk add \
 php7-openssl \
 php7-sqlite3 \
 php7-pear \
@@ -43,27 +50,33 @@ php7-bz2 \
 php7-gd \
 php7-mysqli \
 php7-fileinfo \
+php7-dev \
 composer curl openssl tar autoconf build-base linux-headers libaio-dev openssl-dev git
 
 RUN printf "yes\nyes\n" | pecl install swoole
 
-RUN { \
-        echo "extension=swoole"; \
+RUN php -v \
+    && php -m \
+    && cd /etc/php7 \
+    && { \
+        echo "extension=swoole.so"; \
+        echo "swoole.use_shortname='Off'"; \
         echo "upload_max_filesize=100M"; \
         echo "post_max_size=108M"; \
         echo "memory_limit=1024M"; \
         echo "date.timezone=Asia/Shanghai"; \
-    } | tee /etc/php7/php.ini \
+    } | tee conf.d/99-overrides.ini \
     && apk del libaio-dev php7-dev autoconf build-base linux-headers \
     && rm -rf /var/cache/apk/* /tmp/* /usr/share/man \
     && echo -e "\033[42;37m Build Completed :).\033[0m\n"
 
 #COPY . /opt/www
 
-WORKDIR /opt/www
+#WORKDIR /opt/www
 
 #RUN composer install --no-dev && composer dump-autoload -o
 
-EXPOSE 8000
+#EXPOSE 8000
 
-ENTRYPOINT ["php", "/opt/www/think", "run"]
+CMD ["/bin/sh"]
+#ENTRYPOINT ["php", "/opt/www/think", "run"]
