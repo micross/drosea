@@ -47,6 +47,7 @@ php7-gd \
 php7-mysqli \
 php7-fileinfo \
 php7-xml \
+php-simplexml \
 php7-fpm \
 composer \
 git \
