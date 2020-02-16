@@ -5,7 +5,7 @@ LABEL maintainer="panwei <546196895@qq.com>" version="1.0" license="MIT"
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
 RUN set -ex && \
-apk add --no-cache \
+apk add \
 php7-openssl \
 php7-sqlite3 \
 php7-pear \
