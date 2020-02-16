@@ -2,14 +2,10 @@ FROM alpine:latest
 
 LABEL maintainer="panwei <546196895@qq.com>" version="1.0" license="MIT"
 
-#ARG timezone
-
-#ENV TIMEZONE=${timezone:-"Asia/Shanghai"}
-
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
 RUN set -ex && \
-apk add \
+apk add --no-cache \
 php7-openssl \
 php7-sqlite3 \
 php7-pear \
@@ -56,7 +52,7 @@ composer \
 git \
 curl
 #php7-dev \
-#composer curl openssl tar autoconf build-base linux-headers libaio-dev openssl-dev git
+#openssl tar autoconf build-base linux-headers libaio-dev openssl-dev git
 
 #RUN printf "yes\nyes\n" | pecl install swoole
 
@@ -73,5 +69,6 @@ RUN php -v \
     && rm -rf /var/cache/apk/* /tmp/* /usr/share/man \
     && echo -e "\033[42;37m Build Completed :).\033[0m\n"
 
-CMD ["/bin/sh"]
-#ENTRYPOINT ["php", "/opt/www/think", "run"]
+EXPOSE 9000
+
+CMD ["php-fpm"]
