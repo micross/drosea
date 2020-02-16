@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:latest
 
 LABEL maintainer="panwei <546196895@qq.com>" version="1.0" license="MIT"
 
@@ -50,7 +50,8 @@ php7-bz2 \
 php7-gd \
 php7-mysqli \
 php7-fileinfo \
-php7-simplexml \
+php7-xml \
+php7-fpm \
 composer \
 git \
 curl
@@ -71,14 +72,6 @@ RUN php -v \
     && apk del openssl-dev tar libaio-dev php7-dev autoconf build-base linux-headers \
     && rm -rf /var/cache/apk/* /tmp/* /usr/share/man \
     && echo -e "\033[42;37m Build Completed :).\033[0m\n"
-
-#COPY . /opt/www
-
-#WORKDIR /opt/www
-
-#RUN composer install --no-dev && composer dump-autoload -o
-
-#EXPOSE 8000
 
 CMD ["/bin/sh"]
 #ENTRYPOINT ["php", "/opt/www/think", "run"]
