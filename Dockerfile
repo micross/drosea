@@ -97,7 +97,7 @@ RUN set -eux; \
 	} | tee php-fpm.d/zz-docker.conf; \
     echo -e "\033[42;37m Build Completed :).\033[0m\n"
 
-WORKDIR /var/www/html
+WORKDIR /data
 
 STOPSIGNAL SIGQUIT
 
