@@ -76,4 +76,4 @@ STOPSIGNAL SIGQUIT
 
 EXPOSE 9000
 
-CMD ["php-fpm7"]
+CMD ["php-fpm7", "-F"]
