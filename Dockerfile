@@ -69,8 +69,7 @@ RUN php -v \
     } | tee conf.d/99-overrides.ini \
   #  && sed -i 's/listen = 127.0.0.1:9000/listen = 9000/g' /etc/php7/php-fpm.d/www.conf \
     && apk del openssl-dev tar libaio-dev php7-dev autoconf build-base linux-headers \
-    && rm -rf /var/cache/apk/* /tmp/* /usr/share/man \
-    && echo -e "\033[42;37m Build Completed :).\033[0m\n"
+    && rm -rf /var/cache/apk/* /tmp/* /usr/share/man;
 
 RUN set -eux; \
     cd /etc/php7; \
@@ -95,7 +94,8 @@ RUN set -eux; \
 		echo; \
 		echo '[www]'; \
 		echo 'listen = 9000'; \
-	} | tee php-fpm.d/zz-docker.conf
+	} | tee php-fpm.d/zz-docker.conf; \
+    echo -e "\033[42;37m Build Completed :).\033[0m\n"
 
 WORKDIR /var/www/html
 
