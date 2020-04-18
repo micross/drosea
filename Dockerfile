@@ -70,6 +70,10 @@ RUN php -v \
     && rm -rf /var/cache/apk/* /tmp/* /usr/share/man \
     && echo -e "\033[42;37m Build Completed :).\033[0m\n"
 
+WORKDIR /var/www/html
+
+STOPSIGNAL SIGQUIT
+
 EXPOSE 9000
 
-CMD ["php-fpm"]
+CMD ["php-fpm7"]
