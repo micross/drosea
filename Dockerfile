@@ -51,7 +51,8 @@ php-simplexml \
 php7-fpm \
 composer \
 git \
-curl
+curl \
+busybox-extras
 #php7-dev \
 #openssl tar autoconf build-base linux-headers libaio-dev openssl-dev git
 
@@ -66,6 +67,7 @@ RUN php -v \
         echo "memory_limit=1024M"; \
         echo "date.timezone=Asia/Shanghai"; \
     } | tee conf.d/99-overrides.ini \
+    && sed -i 's/listen = 127.0.0.1:9000/listen = 9000/g' /etc/php7/php-fpm.d/www.conf \
     && apk del openssl-dev tar libaio-dev php7-dev autoconf build-base linux-headers \
     && rm -rf /var/cache/apk/* /tmp/* /usr/share/man \
     && echo -e "\033[42;37m Build Completed :).\033[0m\n"
