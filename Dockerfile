@@ -5,8 +5,8 @@ LABEL maintainer="panwei <546196895@qq.com>" version="1.0" license="MIT"
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
 RUN set -eux; \
-	addgroup -g 33 -S www-data; \
-	adduser -u 33 -D -S -G www-data www-data
+	addgroup -g 500 -S ubuntu; \
+	adduser -u 500 -D -S -G ubuntu ubuntu
 
 RUN set -ex && \
 apk add \
@@ -98,8 +98,8 @@ RUN set -eux; \
 		echo 'daemonize = no'; \
 		echo; \
 		echo '[www]'; \
-		echo 'user = www-data'; \
-		echo 'group = www-data'; \
+		echo 'user = ubuntu'; \
+		echo 'group = ubuntu'; \
 		echo 'listen = 9000'; \
 	} | tee php-fpm.d/zz-docker.conf; \
     echo -e "\033[42;37m Build Completed :).\033[0m\n"
