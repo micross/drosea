@@ -49,6 +49,7 @@ php7-fileinfo \
 php7-xml \
 php-simplexml \
 php7-fpm \
+php7-tokenizer \
 composer \
 git \
 curl \
