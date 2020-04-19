@@ -4,6 +4,10 @@ LABEL maintainer="panwei <546196895@qq.com>" version="1.0" license="MIT"
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
+RUN set -eux; \
+	addgroup -g 82 -S www-data; \
+	adduser -u 82 -D -S -G www-data www-data
+
 RUN set -ex && \
 apk add \
 php7-openssl \
@@ -94,6 +98,8 @@ RUN set -eux; \
 		echo 'daemonize = no'; \
 		echo; \
 		echo '[www]'; \
+		echo 'user = www-data'; \
+		echo 'group = www-data'; \
 		echo 'listen = 9000'; \
 	} | tee php-fpm.d/zz-docker.conf; \
     echo -e "\033[42;37m Build Completed :).\033[0m\n"
