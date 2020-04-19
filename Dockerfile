@@ -5,8 +5,8 @@ LABEL maintainer="panwei <546196895@qq.com>" version="1.0" license="MIT"
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
 RUN set -eux; \
-	addgroup -g 82 -S www-data; \
-	adduser -u 82 -D -S -G www-data www-data
+	addgroup -g 33 -S www-data; \
+	adduser -u 33 -D -S -G www-data www-data
 
 RUN set -ex && \
 apk add \
